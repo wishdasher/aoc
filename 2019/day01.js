@@ -8,6 +8,18 @@ function getFuelForMass(x) {
 }
 
 const fuel = input.map(getFuelForMass).filter((x) => x >= 0);
-const sum = fuel.reduce((a, b) => a + b);
+const totalFuel = fuel.reduce((a, b) => a + b);
 
-console.log(sum);
+console.log(totalFuel);
+
+function getRecFuelForMass(x) {
+    const currFuel = Math.floor(x / 3) - 2;
+    return currFuel < 0
+        ? 0
+        : currFuel + getRecFuelForMass(currFuel);
+}
+
+const recFuel = input.map(getRecFuelForMass);
+const totalRecFuel = recFuel.reduce((a, b) => a + b);
+
+console.log(totalRecFuel);
